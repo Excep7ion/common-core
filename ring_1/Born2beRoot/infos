@@ -1,0 +1,72 @@
+/********INFOS*********/
+
+host name = meguetta42
+password host name or root = qwerty
+user name = meguetta
+password user name= sameqwerty
+passphrase = sameagainqwerty
+new_username = new_username
+password new_username = Tu_me_les_brise123
+
+/*********UTILS********/
+
+ssh meguetta@localhost -p 4243 = connect in SSH from Iterm
+
+/******COMMANDES*******/
+
+Installing Sudo :
+
+su - = to login in as the root user
+usermod -aG sudo meguetta = add user in the sudo group
+getent group sudo = to check if user is in sudo group
+sudo visudo = to open sudoers file
+meguetta ALL=(ALL) ALL
+
+Installing Git and Vim
+
+apt-get install git -y = to install Git
+git --version = to check the Git version
+
+Installing and configuring SSH (Secure Shell Host)
+
+sudo apt install openssh-server = install openssh
+sudo systemctl status ssh = to check ssh server status
+sudo vim /etc/ssh/sshd_config = this is the sshd server (open vim)
+#Port22 ----> Port 4242
+sudo grep Port /etc/ssh/sshd_config = to check if the port setting are right
+sudo service ssh restart = to restart the SSH Service
+
+Installing and Configuring UFW (Uncomplicated Firewall)
+
+sudo apt-get intall ufw = to install UFW
+sudo ufw enable = to enable UFW
+sudo ufw status numbered = check the status of UFW
+sudo ufw allow ssh = to configure the Rules
+sudo ufw allow 4242 to configure the Port Rules (MARCHE AP)
+sudo ufw status numbered = to check the status of UFW 4242 Port
+
+Connecting to SSH
+
+sudo systemctl restart ssh = to restart your SSH Server
+sudo service sshd status = to check your SSH Status
+ssh your_meguetta@127.0.0.1 -p 4242 = ??
+
+Continue Configurating your Virtual Machine
+
+sudo apt-get install libpam-pwquality = to install Password Quality Checking Library
+sudo vim/etc/pam.d/common-password = open file common-password
+sudo vim/etc/login.defs = open file login.defs
+sudo reboot = to reboot
+
+Creating a group
+
+sudo groupadd user42 = to create a group
+sudo groupadd evaluating = to create an evaluating group
+getent group = to check if the group has been created
+
+Creating a User and Assigning them into te Group
+
+
+
+
+
