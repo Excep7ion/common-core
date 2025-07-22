@@ -14,6 +14,8 @@ OBJ = $(SRC:.c=.o)
 NAME = libftprintf.a
 
 
+
+
 all: $(NAME)
 
 $(NAME): $(OBJ)

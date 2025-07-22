@@ -6,7 +6,7 @@
 /*   By: meguetta <meguetta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 18:24:27 by meguetta          #+#    #+#             */
-/*   Updated: 2024/12/24 13:14:40 by meguetta         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:06:00 by meguetta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ int	ft_printf(const char *format, ...)
 		return (-1);
 	while (format[i])
 	{
-		if (format[i] == '%')
+//		if (format[i + 1] == '\0')
+//			return (count);
+		if (format[i] == '%' && format[i + 1] != '\0')
 			count += ft_printf_2(list, format[++i]);
 		else
 			count += ft_putchar(format[i]);
@@ -75,40 +77,46 @@ int	main(int argc, char **argv)
 	d = 42;
 	i = 11;
 	u = -42;
-	exa = 123;
-	printf("nombre de cara = %d\n", printf("je m'entr%cine a reproduire %s pour la %deme fois\nl'adresse de str est %x, em maj c'est %X je veux un seul %%\n", c, str, d, exa, exa));
-	ft_printf("%d", ft_printf("je m'entr%cine a reproduire %s pour la %deme fois\nl'adresse de str est %x, em maj c'est %X je veux un seul %%\n", c, str, d, exa, exa));
+	exa = -9999;
+	printf("je m'entr%cine a reproduire %s pour la %deme fois\nl'adresse \
+	de str est %x, em maj c'est %X je veux un seul %%\n", c, str, d, exa, exa);
+	ft_printf("je m'entr%cine a reproduire %s pour la %deme fois\nl'adresse \
+	de str est %x, em maj c'est %X je veux un seul %%\n", c, str, d, exa, exa);
 
-//	printf("c = %c\n", c);
-//	ft_printf("c = %c\n", c);
+	printf("c = %c\n", c);
+	ft_printf("c = %c\n", c);
 
-	printf("%d", printf(NULL));
-	ft_printf("%d", ft_printf(NULL));
-//	ft_printf("str = %s\n", str);
+	printf("str = %s\n", str);
+	ft_printf("str = %s\n", str);
 
-//	printf("d = %d\n", d);
-//	ft_printf("d = %d\n", d);
+//	printf("affiche le %", str);
+//	ft_printf("affiche le %", str);
 
-//	printf("i = %i\n", i);
-//	ft_printf("i = %i\n", i);
+	printf("d = %d\n", d);
+	ft_printf("d = %d\n", d);
 
-//	printf("u = %u\n", u);
-//	ft_printf("u = %u\n", u);
+	printf("i = %i\n", i);
+	ft_printf("i = %i\n", i);
 
-//	printf("str = %p\n", str);
-//	ft_printf("str = %p\n", str);
+	printf("u = %u\n", u);
+	ft_printf("u = %u\n", u);
 
-//	printf("x = %x\n", exa);
-//	ft_printf("x = %x\n", exa);
+	printf("str = %p\n", str);
+	ft_printf("str = %p\n", str);
 
-//	printf("X = %X\n", exa);
-//	ft_printf("X = %X\n", exa);
+	printf("x = %x\n", exa);
+	ft_printf("x = %x\n", exa);
 
-//	printf("%%\n");
-//	ft_printf("%%\n");
+	printf("X = %X\n", exa);
+	ft_printf("X = %X\n", exa);
 
-//	printf("count = %d\n", printf("%x", exa));
-//	printf("%d\n", printf("%p", str));
-//	ft_printf("%d", ft_printf("%p", str));
+	printf("%%\n");
+	ft_printf("%%\n");
+
+	printf("count = %d\n", printf("%x\n", exa));
+
+//	printf("%s", str)
+
+
 	return (0);
 }

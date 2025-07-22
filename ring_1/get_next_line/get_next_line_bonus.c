@@ -6,11 +6,11 @@
 /*   By: meguetta <meguetta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:54:52 by meguetta          #+#    #+#             */
-/*   Updated: 2024/12/24 11:04:14 by meguetta         ###   ########.fr       */
+/*   Updated: 2024/12/25 17:42:07 by meguetta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	*ft_free(void **ptr)
 {
@@ -37,7 +37,7 @@ int	ft_read(int fd, char **stash)
 			break ;
 		tmp = *stash;
 		*stash = ft_strjoin(tmp, buffer);
-		if (*stash == NULL)
+		if (stash == NULL)
 			return (ft_free((void *)&tmp), -1);
 		ft_free((void **)&tmp);
 		if (ft_strchr(*stash, '\n'))
@@ -98,21 +98,21 @@ void	ft_line(char **stash, char **line)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*stash;
+	static char	*stash[1024];
 
 	line = NULL;
 	if (fd == -1 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (ft_read(fd, &stash) == -1)
+	if (ft_read(fd, &stash[fd]) == -1)
 		return (NULL);
-	if (ft_strlen(stash))
+	if (ft_strlen(stash[fd]))
 	{
-		ft_line(&stash, &line);
+		ft_line(&stash[fd], &line);
 		return (line);
 	}
-	if (stash)
-		free(stash);
-	return (stash = NULL, line);
+	if (stash[fd])
+		free(stash[fd]);
+	return (stash[fd] = NULL, line);
 }
 
 /*
@@ -121,11 +121,11 @@ int main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	int	fd;
-	int	i;
+	int	fd2;
 	char	*str;
 
-	i = 0;
 	fd = open(argv[1], O_RDONLY);
+	fd2 = open(argv[2], O_RDONLY);
 
 	while ((str = get_next_line(fd)) != NULL)
 		{
@@ -137,10 +137,21 @@ int main(int argc, char **argv)
 			}
 		}
 		close (fd);
+	while ((str = get_next_line(fd2)) != NULL)
+		{
+			printf("%s", str);
+			if (str)
+			{
+				free(str);
+				str = NULL;
+			}
+		}
+		close (fd2);
 		return (0);
-}*/
+}
 
-/*
+
+
 	while (1)
 	{
 		str = get_next_line(fd);

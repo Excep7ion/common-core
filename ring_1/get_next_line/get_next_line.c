@@ -6,7 +6,7 @@
 /*   By: meguetta <meguetta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 14:54:52 by meguetta          #+#    #+#             */
-/*   Updated: 2024/12/24 10:53:25 by meguetta         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:45:50 by meguetta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_read(int fd, char **stash)
 	char	*tmp;
 	int		size;
 
-	tmp = NULL;
 	size = 1;
 	while (size > 0)
 	{
@@ -60,7 +59,7 @@ char	*ft_stash_cpy(char *src)
 	}
 	if (src[src_len] == '\n')
 		src_len++;
-	dest = ft_calloc(sizeof (char), (src_len + 1));
+	dest = ft_calloc(sizeof(char), (src_len + 1));
 	if (dest == NULL)
 		return (NULL);
 	while (src[i] && src[i] != '\n')
@@ -116,20 +115,23 @@ char	*get_next_line(int fd)
 }
 
 /*
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
 	int	fd;
 	int	i;
-	char	*str;
+	int	j;
 
 	i = 0;
+	j = 0;
 	fd = open(argv[1], O_RDONLY);
 
+	char	*str = get_next_line(fd);
 	while ((str = get_next_line(fd)) != NULL)
 		{
 			printf("%s", str);
+			j++;
 			if (str)
 			{
 				free(str);
@@ -138,7 +140,7 @@ int main(int argc, char **argv)
 		}
 		close (fd);
 		return (0);
-}*/
+} */
 
 /*
 	while (1)
@@ -147,7 +149,7 @@ int main(int argc, char **argv)
 		if (str == NULL)
 		{
 			printf("str == NULL\n");
-			break;
+			break ;
 		}
 		else
 		{
